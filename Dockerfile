@@ -19,6 +19,8 @@ RUN echo 'root:${ROOT_PASSWORD}' | chpasswd; \
     rm -rf /var/lib/apt/lists/*; \
     apt-get -q update;
 
+RUN echo '* libraries/restart-without-asking boolean true' | debconf-set-selections
+
 # Install all Buildroot deps and prepare buildroot
 WORKDIR /root
 RUN apt-get -q -y install \
